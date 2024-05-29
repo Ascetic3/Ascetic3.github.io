@@ -1,7 +1,6 @@
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
+import Carousel from 'react-bootstrap/Carousel';
 import Image from 'react-bootstrap/Image';
+import Container from 'react-bootstrap/Container';
 
 const teamsData = [
   {
@@ -86,44 +85,31 @@ const teamsData = [
   }
 ]
 
-function AppTeams() {
+
+function AppTeamCarusel() {
   return (
-    <section id="teams" className="block teams-block">
-      <Container fluid className="gx-5">
+    <section className="team-carusel block">
+      <Container>
         <div className="title-holder">
           <h2>Our teams</h2>
           <div className="subtitle">some of our experts</div>
         </div>
-        <Row>
-          {
-            teamsData.map(teams => {
-              return (
-                <Col sm={6} md={4} lg={3} key={teams.id}>
-                  <div className='image'>
-                    <Image src={teams.image} />
-                    <div className='overlay'>
-                      <div className='socials'>
-                        <ul>
-                          <li><a href={teams.fbLink}><i className="fab fa-facebook-f"></i></a></li>
-                          <li><a href={teams.twitterLink}><i className="fab fa-twitter"></i></a></li>
-                          <li><a href={teams.linkedinLink}><i className="fab fa-linkedin-in"></i></a></li>
-                        </ul>
-                      </div>
-                    </div>
-                  </div>
-                  <div className='content'>
-                    <h3>{teams.name}</h3>
-                    <span className='designation'>{teams.designation}</span>
-                    <p>{teams.description}</p>
-                  </div>
-                </Col>
-              );
-            })
-          }
-        </Row>
+        <Carousel  interval={'5000000000000'} >
+          {teamsData.map((teams) => {
+            return (
+              <Carousel.Item key={teams.id}>
+                <Image className="d-block w-100" src={teams.image} />
+                <Carousel.Caption>
+                  <h3>{teams.name}</h3>
+                  <p>{teams.designation}</p>
+                </Carousel.Caption>
+              </Carousel.Item>
+            );
+          })}
+        </Carousel>
       </Container>
     </section>
   );
 }
 
-export default AppTeams;
+export default AppTeamCarusel;
